@@ -1,0 +1,89 @@
+@charset "utf-8";
+
+.input-box {
+  &--error {
+    height: 86px;
+
+    border: 0.1rem solid #ed4e4e;
+    border-radius: 0.4rem;
+  }
+
+  &__container {
+    position: relative;
+  }
+
+  &__input {
+    width: 100%;
+    height: 54px;
+    padding: 16px;
+
+    border: 1px solid $gray-4;
+    border-radius: 4px;
+    background: #fff;
+    color: $gray-9;
+    font-family: $pretendard-font;
+    font-size: 1.4rem;
+    line-height: 2rem;
+
+    &[type="password"] {
+      font: large Verdana, sans-serif;
+      font-size: 1.4rem;
+      line-height: 2rem;
+      letter-spacing: 0.4rem;
+
+      &::placeholder {
+        font-family: $pretendard-font;
+        letter-spacing: normal;
+      }
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid $main-color;
+    }
+
+    &::placeholder {
+      color: $gray-6;
+      font-family: $pretendard-font;
+      font-size: 1.4rem;
+      line-height: 2rem;
+    }
+
+    &:disabled {
+      color: $gray-6;
+      background-color: $gray-1;
+    }
+
+    &--error {
+      border: none;
+      margin-bottom: 0;
+    }
+  }
+
+  &__eye {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
+
+    cursor: pointer;
+  }
+
+  &__error-text {
+    padding-left: 1.6rem;
+    margin-bottom: 1.6rem;
+    font-size: 1.1rem;
+    color: #ed4e4e;
+
+    animation: fadein 0.2s forwards ease-in-out;
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  }
+}

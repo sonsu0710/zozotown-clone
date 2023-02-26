@@ -1,0 +1,121 @@
+@charset "utf-8";
+
+@mixin blind {
+  overflow: hidden;
+  position: absolute;
+  border: 0;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+}
+
+@mixin pretend-font($weight: 400, $size: 1.5rem, $height: $size) {
+  font-family: $pretendard-font;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $height;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::placeholder {
+    @content;
+  }
+}
+
+@mixin scrollbar($always: false, $x-axis: false) {
+  $x-overflow: if($x-axis, auto, hidden);
+  overflow: $x-overflow auto;
+
+  @if not $always {
+    @if $x-axis {
+      overflow: hidden;
+      &:hover {
+        overflow: auto;
+      }
+    } @else {
+      overflow-y: hidden;
+      &:hover {
+        overflow-y: auto;
+      }
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: 4px solid transparent;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    background-clip: padding-box;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@mixin all-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin truncate($text-overflow: ellipsis) {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin multiline-truncate($line, $lineHeight, $textOverflow: ellipsis) {
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+  overflow: hidden;
+  max-height: $line * $lineHeight;
+  line-height: $lineHeight;
+  text-overflow: $textOverflow;
+}
+
+// media query desktop first approach
+// 반응형에 대한 정의가 나온다면 laptop, tablet, mobile로 추상화
+// default css ~ sm까지 순서대로 정의
+@mixin media-query-lg {
+  // 랩탑
+  @media screen and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin media-query-md {
+  // 태블릿 세로
+  @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin media-query-sm {
+  // 모바일 세로
+  @media screen and (max-width: 575px) {
+    @content;
+  }
+}

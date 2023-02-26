@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+.intro-page {
+  display: flex;
+  flex-direction: column;
+
+  &__contents {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  &__footer {
+    @include all-center;
+    height: 170px;
+    padding: 20px 0 40px;
+    border-top: 1px solid $gray-1;
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+}
