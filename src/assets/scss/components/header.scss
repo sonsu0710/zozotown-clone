@@ -1,0 +1,91 @@
+.header {
+  width: 100%;
+  min-width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #efefef;
+  font-size: 2rem;
+
+  position: sticky;
+  top: 0;
+  right: 0;
+  left: 0;
+
+  &--container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 50px;
+  }
+
+  &--logo {
+    margin: 0;
+    height: 50px;
+    font-weight: bold;
+    font-size: 2.6rem;
+    transform: rotate(0.3deg);
+    display: flex;
+    align-items: center;
+  }
+
+  &--input {
+    margin-right: 110px;
+    margin-left: 20px;
+    min-width: 420px;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    background-color: white;
+    padding-left: 10px;
+    border-radius: 8px;
+
+    &__label {
+      display: flex;
+    }
+
+    &__search {
+      width: 13px;
+      height: 30px;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    &__box {
+      width: 100%;
+      border: 0;
+      border-radius: 8px;
+      margin: 0 5px;
+    }
+  }
+
+  &--gnb {
+    display: flex;
+
+    &__login {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80px;
+      font-size: 1.4rem;
+      font-weight: bolder;
+      cursor: pointer;
+      transform: rotate(0.3deg);
+    }
+
+    &__item {
+      display: flex;
+      justify-content: center;
+
+      width: 50px;
+
+      cursor: pointer;
+      //margin-right: 10px;
+    }
+
+    &__img {
+      width: 24px;
+      height: 22px;
+    }
+  }
+}
