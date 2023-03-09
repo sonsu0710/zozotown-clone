@@ -91,5 +91,5 @@ const searchModalLast = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/components/header.scss";
+@import "@/assets/scss/layout/_header.scss";
 </style>

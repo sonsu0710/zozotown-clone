@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+@mixin bg-curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  visibility: visible;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  transition: opacity 0.3s ease-out 0s;
+}
+
+@mixin pretend-font($weight: 400, $size: 1.3rem, $height: $size) {
+  font-family: $pretendard-font;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $height;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::placeholder {
+    @content;
+  }
+}
+
+
+@mixin all-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
