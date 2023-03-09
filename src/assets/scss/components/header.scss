@@ -42,7 +42,6 @@
       display: flex;
       background-color: white;
       border-radius: 8px;
-      background-color: white;
     }
 
     &__label-bottom {
@@ -66,12 +65,13 @@
       margin: 0 5px;
       position: relative;
       z-index: 10;
+      font-weight: bold;
     }
   }
 
   &--search-box {
     position: absolute;
-    top: 35px;
+    top: 40px;
     z-index: 11;
     width: 410px;
     background-color: white;
@@ -93,7 +93,7 @@
     }
 
     &__result-first {
-      padding-top: 10px;
+      //padding-top: 10px;
     }
 
     &__result-last {
