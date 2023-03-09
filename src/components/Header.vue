@@ -24,7 +24,7 @@
                 :key="item.value"
                 :class="(idx === 9 ? searchModalLast : '') || (idx === 0 ? searchModalFirst : '')"
             >
-              {{item.value}}
+              {{ item.value }}
             </div>
           </div>
         </form>
