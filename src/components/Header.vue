@@ -31,10 +31,11 @@
               />
               <button
                   type="reset"
-                  v-if="$refs.inputTag.value !== ''"
+                  v-if="inputValue !== ''"
                   class="header--search-box__reset-btn"
                   :class="openBgOpacity ? toZindexModel : ''"
                   @click="resultValue = []; inputValue = ''; $refs.inputTag.value = '';"
+                  name="input-reset"
               >
                 <img
                     src="@/assets/img/reset.svg"
