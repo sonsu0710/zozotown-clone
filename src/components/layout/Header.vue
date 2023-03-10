@@ -85,13 +85,6 @@ import {computed, onMounted, ref, watch, watchEffect} from "vue";
 import axios from "axios";
 import {$ref} from "vue/macros";
 
-// todo => 검색창을 선택할경우 포커스되며 배경이 투명하게 변함.
-
-
-// todo => 검색창에 검색어가 입력될 경우 오른쪽 끝에 X표시. X 표시를 누르면 검색어 리셋
-
-
-// todo => 검색어 입력시 예상 검색어 모달창 나오도록 표시
 const inputValue = ref("");
 const resultValue = ref([]);
 
@@ -105,7 +98,6 @@ const getSearchData = async () => {
 watch(inputValue, () => {
   getSearchData();
 })
-
 
 // class control
 const borderBottomRadius = computed(() => {
@@ -137,5 +129,5 @@ const openBgOpacity = ref(false);
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/scss/layout/_header.scss";
+@import "@/assets/scss/components/layout/_header.scss";
 </style>
