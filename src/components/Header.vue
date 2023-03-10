@@ -7,7 +7,7 @@
         </a>
       </h1>
       <div class="header--search-box">
-        <div :class="openBgOpacity ? addOverlay : ''"/>
+        <div :class="openBgOpacity ? addOverlay : removeOverlay"/>
         <div class="relative-w100" :class="[openBgOpacity ? toZindexModel : '']">
           <form class="relative-w100">
             <label class="align-center">
@@ -26,15 +26,15 @@
                   placeholder="すべてのアイテムから探す"
                   name="header-search"
                   @input="inputValue = $event.target.value"
-                  @focusin="openBgOpacity = true"
-                  @focusout="openBgOpacity = false"
+                  @focus="openBgOpacity = true"
+                  ref="inputTag"
               />
               <button
                   type="reset"
-                  v-if="resultValue.length !== 0"
+                  v-if="$refs.inputTag.value !== ''"
                   class="header--search-box__reset-btn"
                   :class="openBgOpacity ? toZindexModel : ''"
-                  @click="resultValue = []; inputValue = '';"
+                  @click="resultValue = []; inputValue = ''; $refs.inputTag.value = '';"
               >
                 <img
                     src="@/assets/img/reset.svg"
@@ -106,7 +106,7 @@ watch(inputValue, () => {
 })
 
 
-// class 부착
+// class control
 const borderBottomRadius = computed(() => {
   return "border-bottom-radius-change"
 })
@@ -119,17 +119,17 @@ const addOverlay = computed(() => {
   return 'overlay'
 })
 
+const removeOverlay = computed(() => {
+  return ''
+})
+
 const toZindexModel = computed(() => {
   return 'z-index-model'
 })
 
-// switch
+// switch btn
 const openBgOpacity = ref(false);
 
-// class control
-const inputClassControl = (resultValue: string[]) => {
-  return resultValue.length !== 0 ? borderBottomRadius : ''
-}
 
 // todo 검색창에서 자동완성되는 경우 해당 인풋 백그라운드 색상 제거
 
