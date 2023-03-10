@@ -54,6 +54,11 @@ body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd, button, input, sele
   margin: 0;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
 input {
   font-size: 1.4rem;
   &:focus {
@@ -61,10 +66,30 @@ input {
   }
 }
 
+form {
+  display: block;
+  margin-top: 0;
+}
+
 textarea {
   &:focus {
     outline: none;
   }
+}
+
+button, input, optgroup, select, textarea {
+  padding: 0;
+  color: inherit;
+  text-align: inherit;
+  text-transform: inherit;
+  vertical-align: middle;
+  background: transparent;
+  border-style: none;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  line-height: 1.5;
 }
 
 button {
@@ -81,4 +106,12 @@ button {
 
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+// 브라우저에서 제공하는 input 초기화 버튼 삭제
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button,
+input::-webkit-search-results-button,
+input::-webkit-search-results-decoration{
+  display:none;
 }

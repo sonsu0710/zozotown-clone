@@ -1,58 +1,88 @@
 <template>
   <header class="header">
     <div class="header--container">
-      <a class="header--logo">ZOZOTOWN</a>
-      <div class="header--input">
-        <form>
-          <label
-              class="header--input__label"
-              :class="inputValue ? borderBottomRadius : ''"
+      <h1 class="header--logo">
+        <a class="header--logo__href" aria-label="ZOZOTOWN">
+          <img src="@/assets/img/logo.svg" alt="logo" class="svg--logo"/>
+        </a>
+      </h1>
+      <div class="header--search-box">
+        <div :class="openBgOpacity ? addOverlay : ''"/>
+        <div class="relative-w100" :class="[openBgOpacity ? toZindexModel : '']">
+          <form class="relative-w100">
+            <label class="align-center">
+              <div class="search-icon--wrapper">
+                <img
+                    src="@/assets/img/search.svg"
+                    alt="search"
+                    class="svg--search"
+                />
+              </div>
+              <input
+                  type="search"
+                  class="header--search-box__input"
+                  :class="(resultValue.length !== 0) ? borderBottomRadius : ''"
+                  autocomplete="off"
+                  placeholder="すべてのアイテムから探す"
+                  name="header-search"
+                  @input="inputValue = $event.target.value"
+                  @focusin="openBgOpacity = true"
+                  @focusout="openBgOpacity = false"
+              />
+              <button
+                  type="reset"
+                  v-if="resultValue.length !== 0"
+                  class="header--search-box__reset-btn"
+                  :class="openBgOpacity ? toZindexModel : ''"
+                  @click="resultValue = []; inputValue = '';"
+              >
+                <img
+                    src="@/assets/img/reset.svg"
+                    alt="reset"
+                    class="svg--reset"
+                    aria-label="入力テキストを削除する"
+                />
+              </button>
+            </label>
+          </form>
+          <div
+              class="search-result-box"
+              :class="resultValue.length !== 0 ? addBorderBottom : ''"
           >
-            <img class="header--input__search" src="@/img/search.svg" alt="search"/>
-            <input
-                class="header--input__box"
-                autocomplete="off"
-                placeholder="すべてのアイテムから探す"
-                name="header-search"
-                @input="inputValue = $event.target.value"
-            />
-          </label>
-          <div v-if="inputValue" class="header--search-box">
             <div
-                class="header--search-box__result"
-                v-for="(item, idx) in resultValue"
+                class="search-result-box--box-padding"
+                v-for="item in resultValue"
                 :key="item.value"
-                :class="(idx === 9 ? searchModalLast : '') || (idx === 0 ? searchModalFirst : '')"
-            >
-              {{item.value}}
+            >{{ item.value }}
             </div>
           </div>
-        </form>
+        </div>
       </div>
-      <div class="header--gnb">
-        <a class="header--gnb__login">
-          <div>ログイン</div>
-        </a>
-        <a class="header--gnb__item">
-          <img class="header--gnb__img" src="@/img/bell.svg"/>
-        </a>
-        <a class="header--gnb__item">
-          <img class="header--gnb__img" src="@/img/like.svg"/>
-        </a>
-        <a class="header--gnb__item">
-          <img class="header--gnb__img" src="@/img/cart.svg"/>
-        </a>
-        <a class="header--gnb__item">
-          <img class="header--gnb__img" src="@/img/hamburger.svg"/>
-        </a>
+      <div class="gnb">
+        <div class="gnb--login-box">
+          <a>ログイン</a>
+        </div>
+        <div class="gnb--item-box">
+          <a><img src="@/assets/img/bell.svg"/></a>
+        </div>
+        <div class="gnb--item-box">
+          <a><img src="@/assets/img/like.svg"/></a>
+        </div>
+        <div class="gnb--item-box">
+          <a><img src="@/assets/img/cart.svg"/></a>
+        </div>
+        <div class="gnb--item-box">
+          <a><img src="@/assets/img/hamburger.svg"/></a>
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script lang="ts" setup>
-import {computed, ref, watch} from "vue";
+import {computed, onMounted, ref, watch, watchEffect} from "vue";
 import axios from "axios";
+import {$ref} from "vue/macros";
 
 // todo => 검색창을 선택할경우 포커스되며 배경이 투명하게 변함.
 
@@ -75,16 +105,31 @@ watch(inputValue, () => {
   getSearchData();
 })
 
+
+// class 부착
 const borderBottomRadius = computed(() => {
-  return "header--input__label-bottom"
+  return "border-bottom-radius-change"
 })
 
-const searchModalFirst = computed(() => {
-  return "header--search-box__result-first";
+const addBorderBottom = computed(() => {
+  return 'add-border-bottom'
 })
-const searchModalLast = computed(() => {
-  return "header--search-box__result-last";
+
+const addOverlay = computed(() => {
+  return 'overlay'
 })
+
+const toZindexModel = computed(() => {
+  return 'z-index-model'
+})
+
+// switch
+const openBgOpacity = ref(false);
+
+// class control
+const inputClassControl = (resultValue: string[]) => {
+  return resultValue.length !== 0 ? borderBottomRadius : ''
+}
 
 // todo 검색창에서 자동완성되는 경우 해당 인풋 백그라운드 색상 제거
 
